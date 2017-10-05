@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <link rel="stylesheet" href="style.css">
+    </head>
+
+    <body>
+        <h1>Friend Trip</h1>
+        <div>
+            <input type="text" id="addTripDestinationInput" value="Marfa" required>Destination</div>
+        <div>
+            <input type="number" id="addTripDaysInput" value=4 required>Days
+        </div>
+        <div>
+            <input type="text" id="addTripCreatedByInput" required>Created By
+        </div>
+
+        <button onclick="handlers.addTrip()">Add</button>
+
+        <!-- List trips -->
+        <div>
+            <ul></ul>
+        </div>
+
+        <script src='script.js'></script>
+    </body>
+</html>
