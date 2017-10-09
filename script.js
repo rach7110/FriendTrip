@@ -1,10 +1,10 @@
 var tripsList = {
     trips: [],
-    addTrip: function(destination, days, createdBy) {
+    addTrip: function(destination, days, author) {
         this.trips.push({
             destination:    destination,
             days:           days,
-            createdBy:      createdBy,
+            author:         author,
             votesUp:        0,
             votesDown:      0
         });
@@ -22,13 +22,13 @@ var handlers = {
     addTrip: function() {
         var tripDestination = document.getElementById('addTripDestinationInput');
         var tripDays        = document.getElementById('addTripDaysInput');
-        var tripCreator     = document.getElementById('addTripCreatedByInput');
+        var tripAuthor      = document.getElementById('addTripAuthorInput');
 
-        tripsList.addTrip(tripDestination.value, tripDays.value, tripCreator.value);
+        tripsList.addTrip(tripDestination.value, tripDays.value, tripAuthor.value);
         // Empty input fields after a new trip is saved
         tripDestination.value = '';
         tripDays.value        = '';
-        tripCreator.value     = '';
+        tripAuthor.value     = '';
 
         view.displayTrips();
     },
@@ -48,6 +48,7 @@ var view = {
         tripsUl.innerHTML = '';
 
         for(var i=0; i < tripsList.trips.length; i++) {
+            debugger;
             var tripLi = document.createElement('li');
             var trip = tripsList.trips[i];
 
@@ -55,7 +56,7 @@ var view = {
             tripLi.textContent = trip.destination + ': ' + trip.days + ' days';
             tripLi.appendChild(this.createEditButton());
             tripLi.appendChild(this.createDeleteButton());
-            tripLi.appendChild(this.createAuthorElement());
+            tripLi.appendChild(this.createAuthorElement(trip.author));
             tripsUl.appendChild(tripLi); 
 
         }
@@ -74,10 +75,10 @@ var view = {
 
         return deleteButton;
     },
-    createAuthorElement: function() {
+    createAuthorElement: function(author) {
         var authorElement = document.createElement('h6');
-        authorElement.textContent = 'Created By: Rachel';
-        authorElement.className = 'createdBy';
+        authorElement.textContent = 'Created by:' + author;
+        authorElement.className = 'tripAuthor'
 
         return authorElement;
 
